@@ -40,17 +40,19 @@ export class WageList {
                 this.insertFirst(month, money);
             } else {
                 let node = new Node(month, money);
-                this.tail.next = node;
-                this.tail = node;
-                this.size ++;
+                if (this.tail) {
+                    this.tail.next = node;
+                    this.tail = node;
+                    this.size ++;
+                }
             }
         } else {
             console.log(`Error: Tháng ${month} đã có trong danh sách`);
         }
     }
-    showList(): Node[] {
-        let wageList= [];
-        let currentNode: Node = this.head;
+    showList(): {month: Month, money: number}[] {
+        let wageList: {month: Month, money: number}[] = [];
+        let currentNode = this.head;
         while (currentNode) {
             wageList.push(currentNode.readData())
             currentNode = currentNode.next;
@@ -58,7 +60,7 @@ export class WageList {
         return wageList;
     }
     getListMoney(): number[] {
-        let listMoney = [];
+        let listMoney: number[] = [];
         let currentNode = this.head;
         while (currentNode) {
             listMoney.push(currentNode.money);

@@ -37,7 +37,7 @@ export class Node {
     setMoney(value: number) {
         this.money = value;
     }
-    readData(): object {
+    readData(): {month: Month, money: number} {
         return {month: this.month, money: this.money};
     }
 }
